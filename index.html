@@ -1,831 +1,273 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HARUOMILABO Studio OFFICIAL SITE</title>
-    <link rel="icon" href="favicon/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon/favicon.ico" />
-    <link rel="icon" type="image/x-icon" sizes="16x16 32x32" href="favicon/favicon.ico">
-    <link rel="apple-touch-icon" sizes="152x152" href="favicon/favicon-152-precomposed.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="favicon-144-precomposed.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="favicon/favicon-120-precomposed.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="favicon/favicon-114-precomposed.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon-180-precomposed.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="favicon/favicon-72-precomposed.png">
-    <link rel="apple-touch-icon" sizes="57x57" href="favicon/favicon-57.png">
-    <link rel="icon" sizes="32x32" href="favicon/favicon-32.png" >
-    <meta name="msapplication-TileColor" content="#FFFFFF">
-    <meta name="msapplication-TileImage" content="favicon/favicon-144.png">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="manifest" href="favicon/manifest.json">
-    <link rel="icon" sizes="192x192" href="favicon/favicon-192.png">
-    <link rel="apple-touch-icon" href="favicon/favicon/apple-touch-icon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,200;0,300;0,400;1,200&family=DM+Serif+Display:ital@0;1&family=Noto+Sans+JP:wght@200;300;400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg:       #f8f7f5;
-            --bg-dark:  #111110;
-            --fg:       #111110;
-            --fg-mid:   #6b6b68;
-            --fg-light: #b0afa9;
-            --border:   rgba(17,17,16,0.1);
-            --serif: 'DM Serif Display', 'Noto Serif JP', serif;
-            --sans:  'DM Sans', 'Noto Sans JP', sans-serif;
-            --ease:  cubic-bezier(0.16, 1, 0.3, 1);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HARUOMILABO Studio OFFICIAL SITE</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; -webkit-user-select: none; }
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:300;400&family=DM+Serif+Display&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
 
-        /* スムーズスクロールはJSで管理するため無効化 */
-        html { scroll-behavior: auto; }
+<style>
+:root{
+--bg:#f4f3ef;
+--bg-soft:#ebe9e4;
+--fg:#1a1a1a;
+--fg-mid:#555;
+--fg-light:#9a9a9a;
+--border:rgba(0,0,0,0.08);
+--serif:'DM Serif Display','Noto Serif JP',serif;
+--sans:'Noto Sans JP',sans-serif;
+}
 
-        body {
-            background: var(--bg);
-            color: var(--fg);
-            font-family: var(--sans);
-            font-weight: 300;
-            line-height: 1.7;
-            overflow-x: hidden;
-            /* ネイティブスクロールバーを非表示にしてJS管理に切り替え */
-            overflow-y: scroll;
-            scrollbar-width: none; /* Firefox */
-        }
-        body::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+*{margin:0;padding:0;box-sizing:border-box;}
 
-        /* タッチデバイス以外のみカスタムカーソル */
-        @media (hover: hover) and (pointer: fine) {
-            body { cursor: none; }
-        }
+body{
+background:linear-gradient(180deg,#f8f7f5,#f1efe9);
+color:var(--fg);
+font-family:var(--sans);
+letter-spacing:.02em;
+line-height:1.8;
+}
 
-        /* ---- CUSTOM CURSOR（PCのみ） ---- */
-        .cursor-dot,
-        .cursor-ring {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-        }
-        @media (hover: hover) and (pointer: fine) {
-            .cursor-dot {
-                display: block;
-                width: 6px; height: 6px;
-                background: var(--fg);
-                border-radius: 50%;
-                z-index: 9999;
-                transition: width .2s var(--ease), height .2s var(--ease), background .2s;
-            }
-            .cursor-ring {
-                display: block;
-                width: 36px; height: 36px;
-                border: 1px solid rgba(17,17,16,.35);
-                border-radius: 50%;
-                z-index: 9998;
-                transition: width .35s var(--ease), height .35s var(--ease), border-color .2s, background .2s;
-            }
-            body.cursor-hover .cursor-ring {
-                width: 56px; height: 56px;
-                background: rgba(17,17,16,.05);
-                border-color: rgba(17,17,16,.12);
-            }
-            body.cursor-dark .cursor-dot { background: #f8f7f5; }
-            body.cursor-dark .cursor-ring { border-color: rgba(248,247,245,.4); }
-            body.cursor-dark.cursor-hover .cursor-ring {
-                background: rgba(248,247,245,.06);
-                border-color: rgba(248,247,245,.18);
-            }
-        }
+/* NAV */
+nav{
+position:fixed;
+top:0;left:0;right:0;
+display:flex;
+justify-content:space-between;
+padding:20px 40px;
+background:rgba(255,255,255,.75);
+backdrop-filter:blur(10px);
+border-bottom:1px solid var(--border);
+}
 
-        /* ---- NAV ---- */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 200;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 32px 56px;
-        }
-        nav::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(248,247,245,.92) 0%, transparent 100%);
-            pointer-events: none;
-        }
-        .nav-logo { position: relative; height: 32px; z-index: 1; }
-        .nav-links {
-            position: relative;
-            display: flex;
-            gap: 44px;
-            list-style: none;
-            z-index: 1;
-        }
-        .nav-links a {
-            color: var(--fg-mid);
-            text-decoration: none;
-            font-size: .7rem;
-            font-weight: 300;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-            transition: color .25s;
-        }
-        .nav-links a:hover { color: var(--fg); }
+.nav-links{
+display:flex;
+gap:32px;
+list-style:none;
+}
 
-        /* ---- HAMBURGER ---- */
-        .hamburger {
-            display: none;
-            position: relative;
-            z-index: 201;
-            width: 32px; height: 20px;
-            flex-direction: column;
-            justify-content: space-between;
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-        }
-        .hamburger span {
-            display: block;
-            width: 100%; height: 1px;
-            background: var(--fg);
-            transition: transform .5s var(--ease), opacity .35s ease;
-            transform-origin: center;
-        }
-        .hamburger.open span:nth-child(1) { transform: translateY(9.5px) rotate(45deg); }
-        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-        .hamburger.open span:nth-child(3) { transform: translateY(-9.5px) rotate(-45deg); }
+.nav-links a{
+text-decoration:none;
+color:var(--fg-mid);
+font-size:.75rem;
+letter-spacing:.14em;
+}
 
-        /* ---- MOBILE MENU ---- */
-        .mobile-menu {
-            display: flex;
-            position: fixed;
-            inset: 0;
-            z-index: 190;
-            background: var(--bg);
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 80px 40px;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: opacity .45s var(--ease), visibility .45s;
-        }
-        .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 36px; }
-        .mobile-menu ul li {
-            opacity: 0;
-            transform: translateY(16px);
-            transition: opacity .4s var(--ease), transform .4s var(--ease);
-            transition-delay: 0s;
-        }
-        .mobile-menu.open { opacity: 1; visibility: visible; pointer-events: auto; }
-        .mobile-menu.open ul li { opacity: 1; transform: translateY(0); }
-        .mobile-menu.open ul li:nth-child(1) { transition-delay: .10s; }
-        .mobile-menu.open ul li:nth-child(2) { transition-delay: .18s; }
-        .mobile-menu.open ul li:nth-child(3) { transition-delay: .26s; }
-        .mobile-menu.open ul li:nth-child(4) { transition-delay: .34s; }
-        .mobile-menu.open ul li:nth-child(5) { transition-delay: .42s; }
-        .mobile-menu a {
-            font-family: var(--serif);
-            font-size: clamp(2rem, 7vw, 3.2rem);
-            font-weight: 400;
-            color: var(--fg);
-            text-decoration: none;
-            letter-spacing: .02em;
-            transition: color .2s;
-        }
-        .mobile-menu a:hover { color: var(--fg-mid); }
-        .mobile-menu-sub {
-            margin-top: 48px;
-            font-size: .7rem;
-            letter-spacing: .2em;
-            text-transform: uppercase;
-            color: var(--fg-light);
-        }
+.nav-links a:hover{color:var(--fg);}
 
-        /* ---- HERO ---- */
-        header {
-            height: 100vh;
-            min-height: 680px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-left {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 0 56px 80px;
-            position: relative;
-            z-index: 1;
-        }
-        .hero-right {
-            background: url('hero-bg.jpg') center/cover no-repeat;
-            background-color: #ddd8d0;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-right::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to right, var(--bg) 0%, transparent 10%);
-        }
-        .hero-label {
-            font-size: .6rem;
-            letter-spacing: .4em;
-            text-transform: uppercase;
-            color: var(--fg-light);
-            margin-bottom: 24px;
-            opacity: 0;
-            transform: translateY(12px);
-            animation: fadeUp .9s var(--ease) .4s forwards;
-        }
-        .hero-title {
-            font-family: var(--serif);
-            font-size: clamp(3rem, 5.5vw, 5.5rem);
-            font-weight: 400;
-            line-height: 1.05;
-            letter-spacing: -.01em;
-            opacity: 0;
-            transform: translateY(16px);
-            animation: fadeUp 1s var(--ease) .55s forwards;
-        }
-        .hero-title em { font-style: italic; color: var(--fg-mid); }
-        .hero-meta {
-            margin-top: 48px;
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            opacity: 0;
-            transform: translateY(12px);
-            animation: fadeUp .9s var(--ease) .8s forwards;
-        }
-        .hero-meta-line { width: 40px; height: 1px; background: var(--fg-light); }
-        .hero-meta-text { font-size: .75rem; letter-spacing: .08em; color: var(--fg-mid); }
-        .hero-scroll {
-            position: absolute;
-            bottom: 80px; right: 56px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            z-index: 2;
-            opacity: 0;
-            animation: fadeIn 1s ease 1.2s forwards;
-        }
-        .hero-scroll span {
-            font-size: .55rem;
-            letter-spacing: .3em;
-            writing-mode: vertical-rl;
-            color: var(--fg-light);
-        }
-        .hero-scroll-line {
-            width: 1px; height: 48px;
-            background: var(--fg-light);
-            transform-origin: top;
-            animation: lineGrow 1s var(--ease) 1.4s both;
-        }
-        @keyframes lineGrow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+/* HERO */
+header{
+height:100vh;
+display:flex;
+align-items:flex-end;
+padding:0 48px 80px;
+background:linear-gradient(120deg,#f4f3ef,#e9e6df);
+}
 
-        /* ---- TICKER ---- */
-        .ticker {
-            overflow: hidden;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 0;
-        }
-        .ticker-track {
-            display: flex;
-            animation: ticker 22s linear infinite;
-            white-space: nowrap;
-        }
-        .ticker-item {
-            font-size: .65rem;
-            letter-spacing: .3em;
-            text-transform: uppercase;
-            color: var(--fg-light);
-            padding: 0 48px;
-        }
-        .ticker-item::before { content: '—'; margin-right: 48px; }
-        @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.hero-title{
+font-family:var(--serif);
+font-size:clamp(2.8rem,4vw,4.5rem);
+}
 
-        /* ---- SECTION BASE ---- */
-        .section { padding: 120px 56px; max-width: 1280px; margin: 0 auto; }
-        .section-label {
-            font-size: .58rem;
-            letter-spacing: .4em;
-            text-transform: uppercase;
-            color: var(--fg-light);
-            margin-bottom: 64px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .section-label::after { content: ''; flex: 0 0 48px; height: 1px; background: var(--border); }
+.hero-title em{color:#888;}
 
-        /* ---- ABOUT ---- */
-        .about-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start; }
-        .about-heading {
-            font-family: var(--serif);
-            font-size: clamp(2.2rem, 3.8vw, 3.8rem);
-            font-weight: 400;
-            line-height: 1.1;
-        }
-        .about-heading em { font-style: italic; color: var(--fg-mid); }
-        .about-right { display: flex; flex-direction: column; gap: 32px; }
-        .about-body { font-size: .88rem; color: var(--fg-mid); line-height: 1.9; }
-        .about-meta { padding-top: 32px; border-top: 1px solid var(--border); }
-        .about-meta-row {
-            display: grid;
-            grid-template-columns: 80px 1fr;
-            gap: 24px;
-            padding: 14px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: .8rem;
-        }
-        .about-meta-row:first-child { border-top: 1px solid var(--border); }
-        .about-meta-label { color: var(--fg-light); font-size: .65rem; letter-spacing: .12em; padding-top: 2px; }
-        .about-meta-value { color: var(--fg-mid); }
+/* SECTION */
+.section{
+padding:100px 48px;
+max-width:1100px;
+margin:auto;
+}
 
-        /* ---- WORKS ---- */
-        .works-bg { background: var(--bg-dark); }
-        .works-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
-        .work-item { position: relative; overflow: hidden; background: #1a1a18; }
-        .work-item:nth-child(1) { grid-column: span 7; }
-        .work-item:nth-child(2) { grid-column: span 5; }
-        .work-item:nth-child(n+3) { grid-column: span 4; }
-        .work-inner { position: relative; }
-        .work-item:nth-child(1) .work-inner,
-        .work-item:nth-child(4) .work-inner { aspect-ratio: 16/9; }
-        .work-item:nth-child(n+2) .work-inner { aspect-ratio: 4/3; }
-        .work-bg {
-            position: absolute; inset: 0;
-            background: #1a1a18;
-            transition: transform .7s var(--ease);
-        }
-        .work-item:hover .work-bg { transform: scale(1.04); }
-        .work-bg::after {
-            content: '';
-            position: absolute; inset: 0;
-            background-image:
-                linear-gradient(rgba(248,247,245,.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(248,247,245,.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-        .work-tag {
-            position: absolute; top: 20px; left: 20px;
-            font-size: .55rem; letter-spacing: .3em; text-transform: uppercase;
-            color: rgba(248,247,245,.35);
-            background: rgba(248,247,245,.06);
-            padding: 5px 10px; z-index: 2;
-        }
-        .work-info {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            padding: 24px;
-            background: linear-gradient(to top, rgba(0,0,0,.65) 0%, transparent 100%);
-            z-index: 2;
-            transform: translateY(8px);
-            opacity: 0;
-            transition: opacity .4s, transform .4s var(--ease);
-        }
-        .work-item:hover .work-info { opacity: 1; transform: translateY(0); }
-        .work-name { font-family: var(--serif); font-size: 1.1rem; color: #f8f7f5; }
-        .work-cat { font-size: .6rem; letter-spacing: .2em; color: rgba(248,247,245,.5); text-transform: uppercase; margin-top: 2px; }
-        .work-link { position: absolute; inset: 0; z-index: 3; }
+.section-label{
+font-size:.65rem;
+letter-spacing:.25em;
+color:var(--fg-light);
+margin-bottom:40px;
+}
 
-        /* ---- NEWS ---- */
-        .news-bg { background: var(--bg-dark); }
-        .news-list { display: flex; flex-direction: column; }
-        .news-item {
-            display: grid;
-            grid-template-columns: 100px 80px 1fr 20px;
-            align-items: center;
-            gap: 40px;
-            padding: 28px 0;
-            border-bottom: 1px solid rgba(248,247,245,.08);
-            text-decoration: none;
-            color: #f8f7f5;
-            transition: opacity .3s;
-        }
-        .news-item:first-child { border-top: 1px solid rgba(248,247,245,.08); }
-        .news-item:hover { opacity: .5; }
-        .news-date  { font-size: .68rem; letter-spacing: .08em; color: rgba(248,247,245,.3); }
-        .news-cat   { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(248,247,245,.35); }
-        .news-title { font-size: .85rem; font-weight: 300; letter-spacing: .03em; }
-        .news-arrow { font-size: .8rem; color: rgba(248,247,245,.2); }
-        .news-state { padding: 40px 0; font-size: .8rem; color: rgba(248,247,245,.3); letter-spacing: .1em; text-align: center; }
+/* ABOUT */
+.about-wrap{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+}
 
-        /* ---- CONTACT ---- */
-        .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: center; }
-        .contact-heading {
-            font-family: var(--serif);
-            font-size: clamp(2.4rem, 4vw, 4rem);
-            font-weight: 400;
-            line-height: 1.1;
-        }
-        .contact-heading em { font-style: italic; color: var(--fg-mid); }
-        .contact-right { display: flex; flex-direction: column; gap: 36px; }
-        .contact-field {
-            display: flex; flex-direction: column; gap: 6px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-        .contact-field-label { font-size: .58rem; letter-spacing: .35em; text-transform: uppercase; color: var(--fg-light); }
-        .contact-field-value { font-size: .88rem; color: var(--fg-mid); line-height: 1.7; }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 16px;
-            padding: 16px 36px;
-            background: var(--fg);
-            color: var(--bg);
-            text-decoration: none;
-            font-size: .68rem;
-            letter-spacing: .22em;
-            text-transform: uppercase;
-            transition: background .3s;
-        }
-        .btn:hover { background: var(--fg-mid); }
+.about-body{color:var(--fg-mid);}
 
-        /* ---- FOOTER ---- */
-        footer {
-            background: var(--fg);
-            padding: 48px 56px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .footer-logo { height: 26px; filter: invert(1); opacity: .8; }
-        .footer-copy { font-size: .62rem; letter-spacing: .08em; color: rgba(248,247,245,.35); }
-        .footer-links { display: flex; gap: 28px; list-style: none; }
-        .footer-links a {
-            font-size: .62rem; letter-spacing: .14em;
-            color: rgba(248,247,245,.35);
-            text-decoration: none;
-            transition: color .25s;
-        }
-        .footer-links a:hover { color: rgba(248,247,245,.9); }
+.about-meta{
+background:var(--bg-soft);
+border:1px solid var(--border);
+padding:16px;
+}
 
-        /* ---- ANIMATIONS ---- */
-        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { to { opacity: 1; } }
-        .reveal {
-            opacity: 0; transform: translateY(20px);
-            transition: opacity .9s var(--ease), transform .9s var(--ease);
-        }
-        .reveal.visible { opacity: 1; transform: none; }
-        .reveal-delay-1 { transition-delay: .1s; }
-        .reveal-delay-2 { transition-delay: .2s; }
-        .reveal-delay-3 { transition-delay: .3s; }
+/* WORKS */
+.works-bg{background:#161616;color:#fff;}
 
-        .works-bg .section-label,
-        .news-bg  .section-label { color: rgba(248,247,245,.28); }
-        .works-bg .section-label::after,
-        .news-bg  .section-label::after { background: rgba(248,247,245,.1); }
+.work-item{
+background:#222;
+margin-bottom:16px;
+position:relative;
+border:1px solid rgba(255,255,255,.05);
+}
 
-        /* ---- RESPONSIVE ---- */
-        @media (max-width: 900px) {
-            nav { padding: 20px 24px; }
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
+.work-inner{aspect-ratio:16/9;}
 
-            header { grid-template-columns: 1fr; }
-            .hero-right { display: none; }
-            .hero-left { padding: 0 24px 60px; min-height: 100vh; justify-content: flex-end; }
-            .hero-scroll { display: none; }
+.work-bg{
+position:absolute;
+inset:0;
+background:#333;
+filter:grayscale(20%);
+}
 
-            .section { padding: 80px 24px; }
-            .about-wrap,
-            .contact-wrap { grid-template-columns: 1fr; gap: 48px; }
+.work-info{
+position:absolute;
+bottom:0;
+padding:16px;
+background:rgba(0,0,0,.7);
+}
 
-            .works-grid { grid-template-columns: 1fr; }
-            .work-item:nth-child(n) { grid-column: span 1; }
-            .work-item:nth-child(n) .work-inner { aspect-ratio: 16/9; }
+/* NEWS */
+.news-bg{background:#1b1b1b;color:#fff;}
 
-            .news-item { grid-template-columns: 1fr; gap: 4px; }
-            .news-arrow { display: none; }
+.news-item{
+display:block;
+padding:20px 0;
+border-bottom:1px solid rgba(255,255,255,.08);
+text-decoration:none;
+color:#fff;
+}
 
-            footer { flex-direction: column; gap: 20px; text-align: center; padding: 36px 24px; }
-        }
-    </style>
+.news-item:hover{opacity:.7;}
+
+/* CONTACT */
+.contact-wrap{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+}
+
+.btn{
+display:inline-block;
+padding:14px 28px;
+background:#222;
+color:#fff;
+text-decoration:none;
+letter-spacing:.15em;
+}
+
+.btn:hover{background:#444;}
+
+/* FOOTER */
+footer{
+background:#111;
+color:#aaa;
+padding:40px;
+display:flex;
+justify-content:space-between;
+}
+
+/* アニメーション */
+.reveal{
+opacity:0;
+transform:translateY(10px);
+transition:.6s;
+}
+
+.reveal.visible{
+opacity:1;
+transform:none;
+}
+
+/* レスポンシブ */
+@media(max-width:900px){
+.about-wrap,.contact-wrap{
+grid-template-columns:1fr;
+}
+}
+</style>
 </head>
+
 <body>
 
-    <!-- カスタムカーソル -->
-    <div class="cursor-dot" id="cursorDot"></div>
-    <div class="cursor-ring" id="cursorRing"></div>
+<nav>
+<a href="#top">HARUOMILABO</a>
+<ul class="nav-links">
+<li><a href="#top">Top</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#works">Works</a></li>
+<li><a href="#news">News</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
 
-    <!-- NAV -->
-    <nav>
-        <a href="#top"><img src="HARUOMILABOStudioLogo.svg" alt="HARUOMILABO Studio" class="nav-logo"></a>
-        <ul class="nav-links">
-            <li><a href="#top">Top</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#works">Works</a></li>
-            <li><a href="#news">News</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-    </nav>
+<header id="top">
+<h1 class="hero-title">
+We make<br><em>things</em><br>visible.
+</h1>
+</header>
 
-    <!-- モバイルメニュー -->
-    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-        <ul>
-            <li><a href="#top"     class="menu-link">Top</a></li>
-            <li><a href="#about"   class="menu-link">About</a></li>
-            <li><a href="#works"   class="menu-link">Works</a></li>
-            <li><a href="#news"    class="menu-link">News</a></li>
-            <li><a href="#contact" class="menu-link">Contact</a></li>
-        </ul>
-        <p class="mobile-menu-sub">HARUOMILABO Studio</p>
-    </div>
+<div id="about" class="section">
+<p class="section-label">About</p>
+<div class="about-wrap">
+<h2>独自の視点で世界を作る</h2>
+<div>
+<p class="about-body">
+HARUOMILABO Studioは、Webサービスなどを提供するクリエイティブスタジオです。
+</p>
+<div class="about-meta">HARUOMILABO</div>
+</div>
+</div>
+</div>
 
-    <!-- HERO -->
-    <header id="top">
-        <div class="hero-left">
-            <p class="hero-label">Creative Studio — Operated by HARUOMILABO</p>
-            <h1 class="hero-title">
-                We make<br>
-                <em>things</em><br>
-                visible.
-            </h1>
-            <div class="hero-meta">
-                <div class="hero-meta-line"></div>
-                <span class="hero-meta-text">Design / Art / Motion</span>
-            </div>
-        </div>
-        <div class="hero-right"></div>
-        <div class="hero-scroll">
-            <span>Scroll</span>
-            <div class="hero-scroll-line"></div>
-        </div>
-    </header>
+<div id="works" class="section works-bg">
+<p class="section-label">Works</p>
+<div class="work-item">
+<div class="work-inner">
+<div class="work-bg"></div>
+<div class="work-info">まだありません</div>
+</div>
+</div>
+</div>
 
-    <!-- TICKER -->
-    <div class="ticker">
-        <div class="ticker-track">
-            <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
-            <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
-            <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
-            <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
-            <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
-            <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
-            <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
-            <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
-        </div>
-    </div>
+<div id="news" class="section news-bg">
+<p class="section-label">News</p>
+<div id="newsList">Loading...</div>
+</div>
 
-    <!-- ABOUT -->
-    <div id="about">
-        <div class="section">
-            <p class="section-label reveal">About</p>
-            <div class="about-wrap">
-                <h2 class="about-heading reveal">
-                    独自の<em>視点</em>で、<br>
-                    世界を
-                    <em>作る</em>
-                </h2>
-                <div class="about-right">
-                    <p class="about-body reveal reveal-delay-1">
-                        HARUOMILABO Studioは、Webサービスなどを提供するクリエイティブスタジオです。
-                    </p>
-                    <div class="about-meta reveal reveal-delay-2">
-                        <div class="about-meta-row">
-                            <span class="about-meta-label">運営</span>
-                            <span class="about-meta-value">HARUOMILABO</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div id="contact" class="section">
+<p class="section-label">Contact</p>
+<div class="contact-wrap">
+<h2>お問い合わせはお気軽に</h2>
+<div>
+<a href="https://haruomilabo.net/haruomilabo_inquiry/" class="btn">
+お問い合わせ →
+</a>
+</div>
+</div>
+</div>
 
-    <!-- WORKS -->
-    <!-- 以下→ <div class="works-bg" id="works">
-        <div class="section">
-            <p class="section-label reveal">Works</p>
-            <div class="works-grid">
-                <div class="work-item reveal">
-                    <div class="work-inner">
-                        <div class="work-bg" style="background-image:url('img/category/works/tachibana-thumb.jpg'); background-size:cover; background-position:center;"></div>
-                        <div class="work-tag">Web</div>
-                        <div class="work-info">
-                            <div class="work-cat"> </div>
-                            <div class="work-name">まだありません</div>
-                        </div>
-                        <a href="https://tachibana-urakawa.com" target="_blank" rel="noopener" class="work-link" aria-label="Tachibana Official Website"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<footer>
+<span>© 2026 HARUOMILABO Studio</span>
+</footer>
 
-    <!-- NEWS -->
-    <div class="news-bg" id="news">
-        <div class="section">
-            <p class="section-label reveal">News</p>
-            <div class="news-list" id="newsList">
-                <div class="news-state">Loading...</div>
-            </div>
-        </div>
-    </div>
+<script>
+const obs=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting){
+e.target.classList.add('visible');
+}
+});
+});
 
-    <!-- CONTACT -->
-    <div id="contact">
-        <div class="section">
-            <p class="section-label reveal">Contact</p>
-            <div class="contact-wrap">
-                <h2 class="contact-heading reveal">
-                    お問い合わせは<br><em>お気軽に</em>
-                </h2>
-                <div class="contact-right reveal reveal-delay-1">
-                    <div class="contact-field">
-                        <span class="contact-field-label">お問い合わせ</span>
-                        <span class="contact-field-value">
-                            お問い合わせフォームよりお気軽にどうぞ。<br>
-                            通常2〜3日以内にご返信いたします。
-                        </span>
-                    </div>
-                    <a href="https://haruomilabo.net/haruomilabo_inquiry/" target="_blank" rel="noopener" class="btn">
-                        お問い合わせフォーム &nbsp;→
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+document.querySelectorAll('.section').forEach(el=>{
+el.classList.add('reveal');
+obs.observe(el);
+});
 
-    <!-- FOOTER -->
-    <footer>
-        <img src="HARUOMILABOLogo.svg" alt="HARUOMILABO Studio" class="footer-logo">
-        <span class="footer-copy">&copy; 2026 HARUOMILABO Studio. All Rights Reserved.</span>
-        <ul class="footer-links">
-            <li><a href="https://haruomilabo.net/Privacy_Policy" target="_blank" rel="noopener">Privacy Policy</a></li>
-            <li><a href="https://haruomilabo.net/haruomilabo_inquiry/" target="_blank" rel="noopener">Contact</a></li>
-        </ul>
-    </footer>
+document.getElementById('newsList').innerHTML =
+'<div>現在ニュースはありません。</div>';
+</script>
 
-    <script>
-        // ---- ハンバーガーメニュー ----
-        const hamburger  = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        function toggleMenu(force) {
-            const open = typeof force === 'boolean' ? force : !hamburger.classList.contains('open');
-            hamburger.classList.toggle('open', open);
-            mobileMenu.classList.toggle('open', open);
-            hamburger.setAttribute('aria-expanded', open);
-            mobileMenu.setAttribute('aria-hidden', !open);
-            document.body.style.overflow = open ? 'hidden' : '';
-        }
-
-        hamburger.addEventListener('click', () => toggleMenu());
-        document.querySelectorAll('.menu-link').forEach(a => {
-            a.addEventListener('click', () => toggleMenu(false));
-        });
-
-        // ---- スムーズ慣性スクロール（PCのみ） ----
-        const isTouch = !window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-        if (!isTouch) {
-            let current = 0;   // 現在の表示位置
-            let target  = 0;   // 目標位置（wheelで更新）
-            let rafId   = null;
-            const ease  = 0.08; // 小さいほど遅く滑らか（0.05〜0.12推奨）
-
-            // wheelイベントで目標値を更新
-            window.addEventListener('wheel', e => {
-                e.preventDefault();
-                target += e.deltaY;
-                target = Math.max(0, Math.min(target, document.body.scrollHeight - window.innerHeight));
-                if (!rafId) loop();
-            }, { passive: false });
-
-            function loop() {
-                const diff = target - current;
-                if (Math.abs(diff) < 0.5) {
-                    current = target;
-                    window.scrollTo(0, current);
-                    rafId = null;
-                    return;
-                }
-                current += diff * ease;
-                window.scrollTo(0, current);
-                rafId = requestAnimationFrame(loop);
-            }
-
-            // アンカーリンク（#id）のスムーズ移動
-            document.querySelectorAll('a[href^="#"]').forEach(a => {
-                a.addEventListener('click', e => {
-                    const id = a.getAttribute('href').slice(1);
-                    const el = document.getElementById(id);
-                    if (!el) return;
-                    e.preventDefault();
-                    target = Math.min(el.getBoundingClientRect().top + current, document.body.scrollHeight - window.innerHeight);
-                    if (!rafId) loop();
-                });
-            });
-        }
-
-        // ---- カスタムカーソル（PCのみ） ----
-        if (!isTouch) {
-            const dot  = document.getElementById('cursorDot');
-            const ring = document.getElementById('cursorRing');
-            let mx = 0, my = 0, rx = 0, ry = 0;
-
-            const darkSections = document.querySelectorAll('.works-bg, .news-bg, footer');
-
-            function checkDark(x, y) {
-                let dark = false;
-                darkSections.forEach(s => {
-                    const r = s.getBoundingClientRect();
-                    if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) dark = true;
-                });
-                document.body.classList.toggle('cursor-dark', dark);
-            }
-
-            document.addEventListener('mousemove', e => {
-                mx = e.clientX; my = e.clientY;
-                dot.style.left = mx + 'px';
-                dot.style.top  = my + 'px';
-                checkDark(mx, my);
-            });
-
-            (function animateRing() {
-                rx += (mx - rx) * 0.12;
-                ry += (my - ry) * 0.12;
-                ring.style.left = rx + 'px';
-                ring.style.top  = ry + 'px';
-                requestAnimationFrame(animateRing);
-            })();
-
-            document.querySelectorAll('a, button, .work-item').forEach(el => {
-                el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-                el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-            });
-        }
-
-        // ---- News: news.json から動的生成 ----
-        async function loadNews() {
-            const list = document.getElementById('newsList');
-            try {
-                const res = await fetch('news/news.json');
-                if (!res.ok) throw new Error();
-                const res = await fetch('news/news.json?ver=' + Date.now());
-                if (!items.length) {
-                    list.innerHTML = '<div class="news-state">現在ニュースはありません。</div>';
-                    return;
-                }
-                list.innerHTML = items.map((item, i) => `
-                    <a href="${escHtml(item.url)}" class="news-item reveal${i > 0 ? ' reveal-delay-' + Math.min(i, 3) : ''}">
-                        <span class="news-date">${escHtml(item.date)}</span>
-                        <span class="news-cat">${escHtml(item.category)}</span>
-                        <span class="news-title">${escHtml(item.title)}</span>
-                        <span class="news-arrow">→</span>
-                    </a>
-                `).join('');
-                list.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-                if (!isTouch) {
-                    list.querySelectorAll('a').forEach(el => {
-                        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-                        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-                    });
-                }
-            } catch {
-                list.innerHTML = '<div class="news-state">ニュースを読み込めませんでした。</div>';
-            }
-        }
-
-        function escHtml(str) {
-            return String(str)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;');
-        }
-
-        // ---- Scroll Reveal ----
-        const revealObs = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('visible');
-                    revealObs.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-        document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
-        loadNews();
-    </script>
 </body>
 </html>

@@ -780,7 +780,7 @@
             try {
                 const res = await fetch('news/news.json');
                 if (!res.ok) throw new Error();
-                const items = await res.json();
+                const res = await fetch('news/news.json?ver=' + Date.now());
                 if (!items.length) {
                     list.innerHTML = '<div class="news-state">現在ニュースはありません。</div>';
                     return;

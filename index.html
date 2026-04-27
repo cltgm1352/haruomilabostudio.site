@@ -7,7 +7,7 @@
     <link rel="icon" href="favicon/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -20,143 +20,510 @@
         }
 
         body {
-            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: #333;
+            font-family: 'Noto Sans JP', sans-serif;
             background-color: #ffffff;
-            line-height: 1.7;
+            color: #333333;
+            line-height: 1.8;
+            font-weight: 300;
         }
 
-        header {
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background-color: #ffffff;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(4px);
             border-bottom: 1px solid #f0f0f0;
-            z-index: 1000;
+            padding: 20px 0;
         }
 
-        .header-container {
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 16px 40px;
+            padding: 0 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
-            height: 32px;
+        .nav-logo {
+            height: 28px;
             display: flex;
             align-items: center;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
         }
 
-        .logo img {
-            height: 100%;
-            width: auto;
-        }
-
-        .navigation {
+        .nav-menu {
             display: flex;
-            gap: 40px;
+            gap: 50px;
             list-style: none;
         }
 
-        .navigation a {
-            font-size: 14px;
-            color: #666;
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
+        .nav-menu a {
+            font-size: 12px;
             letter-spacing: 0.5px;
+            color: #666666;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
         }
 
-        .navigation a:hover {
-            color: #1a3a52;
+        .nav-menu a:hover {
+            color: #1a3a6b;
         }
 
         .hamburger {
             display: none;
             flex-direction: column;
-            background: none;
-            border: none;
-            cursor: pointer;
             gap: 6px;
+            cursor: pointer;
+            z-index: 101;
         }
 
         .hamburger span {
             width: 24px;
             height: 2px;
-            background-color: #333;
-            transition: 0.3s;
+            background-color: #333333;
+            transition: all 0.3s ease;
         }
 
-        main {
-            margin-top: 64px;
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
         }
 
-        .hero {
-            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
-            padding: 80px 40px;
-            text-align: center;
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
         }
 
-        .hero-content {
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        header {
+            margin-top: 70px;
+            padding: 100px 40px 80px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f3f7 100%);
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header-kicker {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999999;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-kicker::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background-color: #cccccc;
+        }
+
+        h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 400;
+            line-height: 1.2;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+            letter-spacing: -0.5px;
+        }
+
+        h1 em {
+            font-style: italic;
+            color: #1a3a6b;
+            font-weight: 500;
+        }
+
+        .header-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 13px;
+            color: #666666;
+            letter-spacing: 0.5px;
+        }
+
+        .header-meta::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background-color: #cccccc;
+        }
+
+        .intro-section {
+            padding: 100px 40px;
+            background-color: #ffffff;
+        }
+
+        .intro-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .intro-left h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 400;
+            line-height: 1.3;
+            color: #1a1a1a;
+            margin-bottom: 50px;
+            letter-spacing: -0.5px;
+        }
+
+        .intro-left h2 em {
+            font-style: italic;
+            color: #1a3a6b;
+            font-weight: 500;
+        }
+
+        .intro-right {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .intro-text {
+            font-size: 14px;
+            color: #555555;
+            line-height: 1.9;
+            letter-spacing: 0.3px;
+        }
+
+        .intro-info {
+            padding-top: 30px;
+            border-top: 1px solid #e8e8e8;
+        }
+
+        .info-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 30px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f5f5f5;
+            font-size: 13px;
+        }
+
+        .info-label {
+            color: #999999;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 11px;
+        }
+
+        .info-value {
+            color: #555555;
+        }
+
+        .works-section {
+            padding: 100px 40px;
+            background-color: #f8f9fa;
+        }
+
+        .works-container {
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .hero-label {
+        .section-title {
             font-size: 12px;
-            color: #999;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 24px;
-            font-weight: 600;
+            color: #999999;
+            margin-bottom: 60px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .hero-title {
-            font-size: 48px;
-            font-weight: 700;
-            color: #1a3a52;
-            line-height: 1.3;
-            margin-bottom: 24px;
-            letter-spacing: -0.5px;
+        .section-title::after {
+            content: '';
+            flex: 0 0 50px;
+            height: 1px;
+            background-color: #d8d8d8;
         }
 
-        .hero-title em {
-            font-style: italic;
-            color: #4a7a9e;
+        .works-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
-        .hero-description {
-            font-size: 16px;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.8;
+        .work-card {
+            background-color: #e8e8e8;
+            aspect-ratio: 1;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.4s ease;
         }
 
-        .ticker-section {
-            background-color: #f9f9f9;
-            border-top: 1px solid #e8e8e8;
-            border-bottom: 1px solid #e8e8e8;
-            padding: 16px 0;
+        .work-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .work-card-content {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #d8d8d8 0%, #c8c8c8 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            position: relative;
             overflow: hidden;
         }
 
-        .ticker-track {
+        .work-card-content::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            pointer-events: none;
+        }
+
+        .work-tag {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #666666;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .work-title {
+            font-size: 18px;
+            font-weight: 400;
+            color: #1a1a1a;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 8px;
+        }
+
+        .work-category {
+            font-size: 12px;
+            color: #999999;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .news-section {
+            padding: 100px 40px;
+            background-color: #ffffff;
+        }
+
+        .news-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid #e8e8e8;
+        }
+
+        .news-item {
+            padding: 30px 0;
+            border-bottom: 1px solid #e8e8e8;
+            display: grid;
+            grid-template-columns: 120px 100px 1fr;
+            gap: 40px;
+            align-items: center;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .news-item:hover {
+            background-color: #fafafa;
+        }
+
+        .news-date {
+            font-size: 12px;
+            color: #999999;
+            letter-spacing: 0.5px;
+        }
+
+        .news-category {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #1a3a6b;
+        }
+
+        .news-title {
+            font-size: 14px;
+            color: #333333;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .contact-section {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, #f0f3f7 0%, #e8ebf0 100%);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .contact-left h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 400;
+            line-height: 1.3;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .contact-right {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .contact-field {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-field-label {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #999999;
+        }
+
+        .contact-field-value {
+            font-size: 14px;
+            color: #555555;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 32px;
+            background-color: #1a3a6b;
+            color: #ffffff;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: fit-content;
+        }
+
+        .cta-button:hover {
+            background-color: #142d52;
+            transform: translateX(4px);
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 60px 40px 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 60px;
+            align-items: start;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-logo {
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            justify-self: end;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: #cccccc;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #999999;
+        }
+
+        .ticker {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            overflow: hidden;
+            border-top: 1px solid #e8e8e8;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .ticker-content {
             display: flex;
             gap: 60px;
-            animation: scroll 30s linear infinite;
             white-space: nowrap;
-            padding: 0 40px;
+            font-size: 13px;
+            color: #999999;
+            letter-spacing: 0.5px;
+            animation: scroll 30s linear infinite;
         }
 
         .ticker-item {
-            font-size: 13px;
-            color: #999;
-            letter-spacing: 1px;
             flex-shrink: 0;
         }
 
@@ -169,352 +536,31 @@
             }
         }
 
-        .section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 40px;
-        }
-
-        .section-header {
-            margin-bottom: 60px;
-        }
-
-        .section-label {
-            font-size: 12px;
-            color: #999;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background-color: #e0e0e0;
-            max-width: 60px;
-        }
-
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .about-heading {
-            font-size: 36px;
-            font-weight: 700;
-            color: #1a3a52;
-            line-height: 1.4;
-            margin-bottom: 32px;
-        }
-
-        .about-heading em {
-            font-style: italic;
-            color: #4a7a9e;
-        }
-
-        .about-content {
-            display: flex;
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: #ffffff;
+            z-index: 99;
+            padding-top: 80px;
+            padding-left: 40px;
             flex-direction: column;
-            gap: 32px;
+            gap: 20px;
         }
 
-        .about-text {
-            font-size: 15px;
-            color: #666;
-            line-height: 1.9;
-        }
-
-        .about-meta {
-            border-top: 1px solid #e8e8e8;
-            padding-top: 24px;
-        }
-
-        .meta-row {
+        .mobile-menu.active {
             display: flex;
-            gap: 40px;
-            padding: 16px 0;
-            border-bottom: 1px solid #f0f0f0;
         }
 
-        .meta-label {
-            font-size: 12px;
-            color: #999;
-            letter-spacing: 1px;
-            min-width: 80px;
-            font-weight: 600;
-        }
-
-        .meta-value {
-            font-size: 15px;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .works-section {
-            background-color: #f5f5f5;
-        }
-
-        .works-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .work-card {
-            aspect-ratio: 16/9;
-            background-color: #e0e0e0;
-            overflow: hidden;
-            border-radius: 4px;
-            position: relative;
-            transition: transform 0.3s;
-        }
-
-        .work-card:nth-child(1) {
-            grid-column: span 2;
-        }
-
-        .work-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .work-image {
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .work-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-            padding: 32px 24px;
-            color: #ffffff;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .work-card:hover .work-overlay {
-            opacity: 1;
-        }
-
-        .work-category {
-            font-size: 11px;
-            color: rgba(255,255,255,0.7);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .work-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #ffffff;
-        }
-
-        .news-section {
-            background-color: #fafafa;
-        }
-
-        .news-list {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .news-item {
-            display: grid;
-            grid-template-columns: 100px 100px 1fr 40px;
-            gap: 40px;
-            padding: 24px 0;
-            border-bottom: 1px solid #e8e8e8;
-            text-decoration: none;
-            color: inherit;
-            transition: background 0.3s;
-            align-items: center;
-        }
-
-        .news-item:first-child {
-            border-top: 1px solid #e8e8e8;
-        }
-
-        .news-item:hover {
-            background-color: rgba(26,58,82,0.02);
-        }
-
-        .news-date {
-            font-size: 13px;
-            color: #999;
-            font-weight: 500;
-        }
-
-        .news-category {
-            font-size: 11px;
-            color: #4a7a9e;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .news-title {
-            font-size: 15px;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .news-arrow {
-            font-size: 16px;
-            color: #ccc;
-            transition: color 0.3s;
-        }
-
-        .news-item:hover .news-arrow {
-            color: #4a7a9e;
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .contact-heading {
-            font-size: 36px;
-            font-weight: 700;
-            color: #1a3a52;
-            line-height: 1.4;
-            margin-bottom: 32px;
-        }
-
-        .contact-heading em {
-            font-style: italic;
-            color: #4a7a9e;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
-        .contact-field {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid #e8e8e8;
-        }
-
-        .contact-field-label {
-            font-size: 12px;
-            color: #999;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .contact-field-value {
-            font-size: 15px;
-            color: #666;
-            line-height: 1.8;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 36px;
-            background-color: #1a3a52;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-            border-radius: 2px;
-        }
-
-        .button:hover {
-            background-color: #0d1f2d;
-        }
-
-        footer {
-            background-color: #1a3a52;
-            color: #ffffff;
-            padding: 48px 40px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 60px;
-            align-items: center;
-            padding-bottom: 32px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .footer-left {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .footer-logo {
-            height: 28px;
-            width: auto;
-            filter: brightness(0) invert(1);
-        }
-
-        .footer-copy {
-            font-size: 12px;
-            color: rgba(255,255,255,0.5);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .footer-links a {
-            font-size: 12px;
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #ffffff;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 32px auto 0;
-            font-size: 12px;
-            color: rgba(255,255,255,0.4);
-            text-align: center;
+        .mobile-menu a {
+            font-size: 20px;
+            color: #333333;
+            display: block;
+            padding: 12px 0;
         }
 
         @media (max-width: 768px) {
-            .header-container {
-                padding: 12px 24px;
-            }
-
-            .navigation {
+            .nav-menu {
                 display: none;
             }
 
@@ -522,193 +568,257 @@
                 display: flex;
             }
 
-            .hero {
-                padding: 60px 24px;
+            .header-content {
+                padding: 0;
             }
 
-            .hero-title {
+            header {
+                padding: 60px 24px 50px;
+            }
+
+            h1 {
                 font-size: 32px;
             }
 
-            .section {
-                padding: 60px 24px;
-            }
-
-            .about-container,
+            .intro-container,
             .contact-container {
                 grid-template-columns: 1fr;
-                gap: 48px;
+                gap: 50px;
+            }
+
+            .intro-section,
+            .works-section,
+            .news-section,
+            .contact-section {
+                padding: 60px 24px;
             }
 
             .works-grid {
                 grid-template-columns: 1fr;
             }
 
-            .work-card:nth-child(1) {
-                grid-column: span 1;
-            }
-
             .news-item {
                 grid-template-columns: 1fr;
-                gap: 8px;
+                gap: 10px;
             }
 
-            .news-arrow {
-                display: none;
-            }
-
-            .footer-container {
+            .footer-main {
                 grid-template-columns: 1fr;
-                gap: 32px;
+                gap: 30px;
             }
 
-            .ticker-track {
-                gap: 40px;
+            .footer-links {
+                justify-self: start;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .nav-container {
                 padding: 0 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .intro-left h2,
+            .contact-left h2 {
+                font-size: 24px;
+            }
+
+            .intro-container,
+            .intro-left h2 {
+                grid-template-columns: 1fr;
+            }
+
+            .work-card-content {
+                padding: 20px;
+            }
+
+            .work-title {
+                font-size: 16px;
+            }
+
+            .header-kicker,
+            .section-title {
+                font-size: 11px;
+            }
+
+            header {
+                padding: 40px 16px 30px;
+            }
+
+            .intro-section,
+            .works-section,
+            .news-section,
+            .contact-section {
+                padding: 50px 16px;
+            }
+
+            .nav-container {
+                padding: 0 16px;
+            }
+
+            footer {
+                padding: 40px 16px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <img src="HARUOMILABOStudioLogo.svg" alt="HARUOMILABO Studio">
-            </div>
-            <nav>
-                <ul class="navigation">
-                    <li><a href="#top">トップ</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#works">Works</a></li>
-                    <li><a href="#news">News</a></li>
-                    <li><a href="#contact">お問い合わせ</a></li>
-                </ul>
-            </nav>
-            <button class="hamburger" aria-label="メニューを開く">
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">HARUOMILABO Studio</div>
+            <ul class="nav-menu">
+                <li><a href="#top">Top</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
         </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#top">Top</a>
+        <a href="#about">About</a>
+        <a href="#works">Works</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <header id="top">
+        <div class="header-content">
+            <p class="header-kicker">Creative Studio — Operated by HARUOMILABO</p>
+            <h1>
+                We make<br>
+                <em>things</em><br>
+                visible.
+            </h1>
+            <div class="header-meta">Design / Art / Motion</div>
+        </div>
     </header>
 
-    <main>
-        <section class="hero" id="top">
-            <div class="hero-content">
-                <p class="hero-label">Creative Studio — Operated by HARUOMILABO</p>
-                <h1 class="hero-title">
-                    We make<br>
-                    <em>things</em><br>
-                    visible.
-                </h1>
-                <p class="hero-description">Design / Art / Motion</p>
-            </div>
-        </section>
-
-        <div class="ticker-section">
-            <div class="ticker-track">
-                <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
-                <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
-                <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
-                <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
-            </div>
+    <div class="ticker">
+        <div class="ticker-content">
+            <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
+            <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
+            <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
+            <span class="ticker-item">HARUOMILABO Studio OFFICIAL SITE</span>
         </div>
+    </div>
 
-        <section class="section" id="about">
-            <div class="section-header">
-                <h2 class="section-label">About</h2>
+    <section class="intro-section" id="about">
+        <div class="intro-container">
+            <div class="intro-left">
+                <h2>
+                    独自の<em>視点</em>で、<br>
+                    世界を
+                    <em>作る</em>
+                </h2>
             </div>
-            <div class="about-container">
-                <div>
-                    <h3 class="about-heading">
-                        独自の<em>視点</em>で、<br>
-                        世界を
-                        <em>作る</em>
-                    </h3>
-                </div>
-                <div class="about-content">
-                    <p class="about-text">
-                        HARUOMILABO Studioは、Webサービスなどを提供するクリエイティブスタジオです。
-                    </p>
-                    <div class="about-meta">
-                        <div class="meta-row">
-                            <span class="meta-label">運営</span>
-                            <span class="meta-value">HARUOMILABO</span>
-                        </div>
+            <div class="intro-right">
+                <p class="intro-text">
+                    HARUOMILABO Studioは、Webサービスなどを提供するクリエイティブスタジオです。
+                </p>
+                <div class="intro-info">
+                    <div class="info-item">
+                        <span class="info-label">運営</span>
+                        <span class="info-value">HARUOMILABO</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section works-section" id="works">
-            <div class="section-header">
-                <h2 class="section-label">Works</h2>
-            </div>
+    <section class="works-section" id="works">
+        <div class="works-container">
+            <p class="section-title">Works</p>
             <div class="works-grid">
                 <div class="work-card">
-                    <div class="work-image" style="background-image:url('img/category/works/tachibana-thumb.jpg');"></div>
-                    <div class="work-overlay">
-                        <div class="work-category">Web Design</div>
+                    <div class="work-card-content">
+                        <span class="work-tag">Web</span>
                         <div class="work-title">Tachibana Official Website</div>
+                        <div class="work-category">Web Design</div>
                     </div>
-                    <a href="https://tachibana-urakawa.com" target="_blank" rel="noopener" style="position: absolute; inset: 0; z-index: 1;" aria-label="Tachibana Official Website"></a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section news-section" id="news">
-            <div class="section-header">
-                <h2 class="section-label">News</h2>
-            </div>
+    <section class="news-section" id="news">
+        <div class="news-container">
+            <p class="section-title">News</p>
             <div class="news-list" id="newsList">
-                <div style="padding: 32px 0; text-align: center; color: #999; font-size: 14px;">Loading...</div>
+                <div style="padding: 30px 0; color: #999999; text-align: center;">Loading...</div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section" id="contact">
-            <div class="section-header">
-                <h2 class="section-label">Contact</h2>
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-left">
+                <h2>
+                    お問い合わせは<br><em>お気軽に</em>
+                </h2>
             </div>
-            <div class="contact-container">
-                <div>
-                    <h3 class="contact-heading">
-                        お問い合わせは<br><em>お気軽に</em>
-                    </h3>
+            <div class="contact-right">
+                <div class="contact-field">
+                    <span class="contact-field-label">お問い合わせ</span>
+                    <span class="contact-field-value">
+                        お問い合わせフォームよりお気軽にどうぞ。<br>
+                        通常2〜3日以内にご返信いたします。
+                    </span>
                 </div>
-                <div class="contact-info">
-                    <div class="contact-field">
-                        <span class="contact-field-label">お問い合わせ</span>
-                        <span class="contact-field-value">
-                            お問い合わせフォームよりお気軽にどうぞ。<br>
-                            通常2〜3日以内にご返信いたします。
-                        </span>
-                    </div>
-                    <a href="https://haruomilabo.net/haruomilabo_inquiry/" target="_blank" rel="noopener" class="button">
-                        お問い合わせフォーム &nbsp;→
-                    </a>
-                </div>
+                <a href="https://haruomilabo.net/haruomilabo_inquiry/" target="_blank" rel="noopener" class="cta-button">
+                    お問い合わせフォーム →
+                </a>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <footer>
-        <div class="footer-container">
-            <div class="footer-left">
-                <img src="HARUOMILABOLogo.svg" alt="HARUOMILABO Studio" class="footer-logo">
-                <span class="footer-copy">&copy; 2026 HARUOMILABO Studio. All Rights Reserved.</span>
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-logo">HARUOMILABO Studio</div>
+                <div></div>
+                <ul class="footer-links">
+                    <li><a href="https://haruomilabo.net/Privacy_Policy" target="_blank" rel="noopener">Privacy Policy</a></li>
+                    <li><a href="https://haruomilabo.net/haruomilabo_inquiry/" target="_blank" rel="noopener">Contact</a></li>
+                </ul>
             </div>
-            <ul class="footer-links">
-                <li><a href="https://haruomilabo.net/Privacy_Policy" target="_blank" rel="noopener">Privacy Policy</a></li>
-                <li><a href="https://haruomilabo.net/haruomilabo_inquiry/" target="_blank" rel="noopener">Contact</a></li>
-            </ul>
-        </div>
-        <div class="footer-bottom">
-            HARUOMILABO Studio
+            <div class="footer-bottom">
+                <span>&copy; 2026 HARUOMILABO Studio. All Rights Reserved.</span>
+            </div>
         </div>
     </footer>
 
     <script>
-        const isTouch = !window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
 
         async function loadNews() {
             const list = document.getElementById('newsList');
@@ -717,7 +827,7 @@
                 if (!res.ok) throw new Error();
                 const items = await res.json();
                 if (!items.length) {
-                    list.innerHTML = '<div style="padding: 32px 0; text-align: center; color: #999; font-size: 14px;">現在ニュースはありません。</div>';
+                    list.innerHTML = '<div style="padding: 30px 0; color: #999999; text-align: center;">現在ニュースはありません。</div>';
                     return;
                 }
                 list.innerHTML = items.map(item => `
@@ -725,11 +835,10 @@
                         <span class="news-date">${escHtml(item.date)}</span>
                         <span class="news-category">${escHtml(item.category)}</span>
                         <span class="news-title">${escHtml(item.title)}</span>
-                        <span class="news-arrow">→</span>
                     </a>
                 `).join('');
             } catch {
-                list.innerHTML = '<div style="padding: 32px 0; text-align: center; color: #999; font-size: 14px;">ニュースを読み込めませんでした。</div>';
+                list.innerHTML = '<div style="padding: 30px 0; color: #999999; text-align: center;">ニュースを読み込めませんでした。</div>';
             }
         }
 
@@ -742,17 +851,6 @@
         }
 
         loadNews();
-
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
-                const id = a.getAttribute('href').slice(1);
-                const el = document.getElementById(id);
-                if (el) {
-                    e.preventDefault();
-                    el.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
     </script>
 </body>
 </html>
